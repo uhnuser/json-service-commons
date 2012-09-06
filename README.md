@@ -70,7 +70,7 @@ public class MyService {
 }
 ```
 All JSON operations must use the `@JsonOperation` annotation and must be static. The operation must accept `ServiceInfo` 
-and a class which extends `BaseRequestParams`. ServiceInfo provides access to the following methods:
+and a class which extends `BaseRequestParams` as parameters. ServiceInfo provides access to the following methods:
 ```java
 HttpServletRequest getRequest()
 ServletContext getContext()
