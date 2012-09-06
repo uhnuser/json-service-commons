@@ -28,6 +28,23 @@ Optionally, you can also specify a security manager, any request will be passed 
 		<env-entry-value>security.SecurityManager</env-entry-value>
 	</env-entry>  
 ```
+Now we'll create our bean and parameters classes
+```java
+import ca.uhn.model.json.BaseRequestParams;
+
+public class RequestParams extends BaseRequestParams {
+  public String id;  
+}
+
+import java.util.Date;
+
+public class Person {  
+  public String name;
+  public Integer height;
+  public Date age;
+}
+```
+
 Then you simply create a class with the handler operations in the package specified above:
 ```java
 package services.json;
@@ -38,7 +55,19 @@ public class MyService {
   @JsonOperation
   public static Person getPerson(ServiceInfo serviceInfo, RequestParams params) throws Exception {
       if (null == params.id) throw new Exception("id is a required parameter");
-      return new Person();
+      Person person = new Person();
+      person.name = "John Doe";
+      person.height = 180;
+      person.age = new java.util.Date();
+      return person;
   }
 }
+```
+All JSON operations must use the `@JsonOperation` annotation and must be static. The operation must accept `ServiceInfo` 
+and a class which extends `BaseRequestParams`. ServiceInfo provides access to the following methods:
+```java
+HttpServletRequest getRequest()
+ServletContext getContext()
+String getOperationName()
+String getHostname()
 ```
