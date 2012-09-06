@@ -28,6 +28,12 @@ Optionally, you can also specify a security manager, any request will be passed 
 		<env-entry-value>security.SecurityManager</env-entry-value>
 	</env-entry>  
 ```
+The security manager must implement the `ca.uhn.ws.security.ISecurityManager` interface, which has the following signature:
+```java
+public void authenticate(ServiceInfo serviceInfo, String method, JsonObject params) throws Exception;
+```
+If authentication fails then `authenticate` should throw an exception and the service will return the error to the client.
+
 Now we'll create our bean and parameters classes
 ```java
 import ca.uhn.model.json.BaseRequestParams;
