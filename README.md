@@ -11,8 +11,17 @@ mvn install
 
 ## Usage
 
-To create a JSON RPC service simply include the library in your project. Next, you must add the packages
-from which the service will try to load operations in your `web.xml`:
+To create a JSON RPC service simply include the library in your project. Then set the servlet to the following in `web.xml`:
+```xml
+<servlet>
+	<servlet-name>json-service</servlet-name>
+	<servlet-class>ca.uhn.ws.JsonService</servlet-class>
+	<load-on-startup>1</load-on-startup>
+</servlet>
+```
+
+Next, you must add the packages
+from which the service will try to load operations:
 ```xml
 <env-entry>
   	<env-entry-name>jsonHandlerPackage</env-entry-name>
