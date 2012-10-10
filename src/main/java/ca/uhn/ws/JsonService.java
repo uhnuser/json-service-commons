@@ -54,13 +54,14 @@ import com.google.gson.JsonSerializer;
 
 public class JsonService extends HttpServlet {
 
+        private static final String DATE_FORMAT = "MMM dd, yyyy hh:mm:ss a";
 	private static final String JSON_SECURITY_MANAGER = "jsonSecurityManager";
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = Logger.getLogger(JsonService.class);
 
 	private static class DateTimeSerializer implements JsonSerializer<Date> {
 		public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
-			SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss a");
+			SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
 			return new JsonPrimitive(format.format(src));
 		}
 	}
@@ -71,7 +72,7 @@ public class JsonService extends HttpServlet {
 				String date = json.getAsJsonPrimitive().getAsString();
 				if (null == date || date.length() == 0) return null;
 				
-				SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss a");
+				SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
 				Date parsedDate = format.parse(date);
 				if(typeOfT == null) return parsedDate;
 				if(java.sql.Date.class.equals(typeOfT.getClass())){
