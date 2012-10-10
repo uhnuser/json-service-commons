@@ -60,6 +60,8 @@ public class Person {
 }
 ```
 
+**note** if you are writing a cusomt client please ensure that the dates are in the following format "MMM dd, yyyy hh:mm:ss a".
+
 Then you simply create a class with the handler operations in the package specified above:
 ```java
 package services.json;
