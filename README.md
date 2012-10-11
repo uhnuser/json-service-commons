@@ -18,6 +18,11 @@ To create a JSON RPC service simply include the library in your project. Then se
 	<servlet-class>ca.uhn.ws.JsonService</servlet-class>
 	<load-on-startup>1</load-on-startup>
 </servlet>
+
+<servlet-mapping>
+	<servlet-name>json-service</servlet-name>
+	<url-pattern>/json-service</url-pattern>
+</servlet-mapping>
 ```
 
 Next, you must add the packages
@@ -87,4 +92,39 @@ HttpServletRequest getRequest()
 ServletContext getContext()
 String getOperationName()
 String getHostname()
+```
+
+You can test that the service is working properly by using CURL:
+
+```bash
+curl -v -H "Content-Type: application/json" -X POST -d "{\"jsonrpc\": \"2.0\", \"method\": \"getPerson\", \"params\": {\"id\": \"123\"}}" http://localhost:8080/json-service
+
+0/json-service
+* About to connect() to localhost port 8080 (#0)
+*   Trying ::1... connected
+* Connected to localhost (::1) port 8080 (#0)
+> POST /test-service/json-service HTTP/1.1
+> User-Agent: curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8r zlib/1.2.5
+> Host: localhost:8080
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 66
+> 
+< HTTP/1.1 200 OK
+< X-Powered-By: Servlet/3.0 JSP/2.2 (GlassFish Server Open Source Edition 3.1.2 Java/Oracle Corporation/1.7)
+< Server: GlassFish Server Open Source Edition 3.1.2
+< Content-Type: application/json;charset=ISO-8859-1
+< Transfer-Encoding: chunked
+< Date: Thu, 11 Oct 2012 15:11:01 GMT
+< 
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "name": "John",
+    "height": 180,
+    "age": "Oct 11, 2012 11:11:01 AM"
+  }
+* Connection #0 to host localhost left intact
+* Closing connection #0
+}
 ```
