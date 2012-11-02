@@ -98,7 +98,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>ca.uhn.ws</groupId>
-			<artifactId>json-service-commons</artifactId>
+			<artifactId>json-rpc-model</artifactId>
 			<version>1.0</version>
 		</dependency>
 		<dependency>
