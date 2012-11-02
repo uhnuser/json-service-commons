@@ -1,21 +1,72 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>6</version>
+	</parent>
+
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.uhn.ws</groupId>
 	<artifactId>json-service-commons</artifactId>
 	<version>2.1</version>
 	<packaging>jar</packaging>
+	<url>https://github.com/uhnuser/json-service-commons</url>
+	<description>a library for creating JSON RPC services in Java</description>
 
-	<repositories>
-		<repository>
-			<id>se2</id>
-			<name>SysEng Maven2 Repository</name>
-			<url>http://cvs/maven/m2</url>
-			<layout>default</layout>
-			<releases>
-      			<updatePolicy>always</updatePolicy>
-    		</releases>
-		</repository>
+	<developers>
+		<developer>
+			<name>Dmitri Sotnikov</name>
+			<email>dmitri.sotnikov@uhn.ca</email>
+		</developer>
+		<developer>
+			<name>Jennifer Chan</name>
+			<email>Jennifer.Chan@uhn.ca</email>
+		</developer>
+		<developer>
+			<name>Laura MacDougall Sookraj</name>
+			<email>Laura.MacDougallSookraj@uhn.ca</email>
+		</developer>
+	</developers>
+	
+	<inceptionYear>2009</inceptionYear>
+	<issueManagement>
+		<system>github</system>
+		<url>https://github.com/uhnuser/json-service-commons/issues</url>
+	</issueManagement>
+	
+	<licenses>
+		<license>
+			<name>json-service-commons is licensed unerl LGPL</name>
+			<comments><![CDATA[
+			   You are both permitted and encouraged to use json-service-commons, royalty-free, within your applications,
+			   whether they are free/open-source or commercial/closed-source, provided you abide by the 
+			   terms of one of the licenses below.
+			   You are under no obligations to inform the json-service-commons project about what you are doing with
+			   json-service-commons, but we would love to hear about it anyway!
+			]]></comments>
+		</license>
+		<license>
+			<name>GNU Lesser General Public License - v 3</name>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/uhnuser/json-service-commons.git</connection>
+		<developerConnection>scm:git:https://github.com/uhnuser/json-service-commons.git</developerConnection>
+		<url>https://github.com/uhnuser/json-service-commons</url>
+	</scm>
+	
+	<organization>
+		<name>University Health Network</name>
+		<url>http://www.uhn.ca</url>
+	</organization>
+
+
+	<repositories>		
 		<repository>
 			<id>jboss</id>
 			<url>http://repository.jboss.com/maven2/</url>
@@ -75,6 +126,13 @@
 	</dependencies>
 
 	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>1.0-beta-7</version>
+			</extension>
+		</extensions>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
