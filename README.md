@@ -5,8 +5,13 @@ a library for creating JSON RPC services in Java
 ## Installation
 
 The library can be installed using maven:
-```bash
-mvn install
+Artifact is provided as a Maven dependency
+```xml
+<dependency>
+	<groupId>ca.uhn.ws</groupId>
+	<artifactId>json-service-commons</artifactId>
+	<version>2.1</version>
+</dependency>
 ```
 
 ## Usage
